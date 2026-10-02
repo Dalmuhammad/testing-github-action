@@ -1,0 +1,17 @@
+# Taruh sebagai .github/workflows/idx_probe.yml (idx_probe.py harus ada di root repo).
+# Jalankan manual: tab Actions -> idx-probe -> Run workflow. Lihat output step "probe".
+name: idx-probe
+
+on: workflow_dispatch
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install curl_cffi
+      - name: probe
+        run: python idx_probe.py
